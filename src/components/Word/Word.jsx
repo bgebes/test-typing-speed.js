@@ -9,7 +9,7 @@ function Word({ data }) {
   };
 
   return (
-    <WrapItem {...stateClasses.current} p="1" rounded="1">
+    <WrapItem {...stateClasses} p="1" rounded="1">
       <Text fontSize="2xl">{data}</Text>
     </WrapItem>
   );

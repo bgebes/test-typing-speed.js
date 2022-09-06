@@ -27,17 +27,12 @@ function WordList() {
   ];
 
   return (
-    <Box bg="white">
-      <Wrap spacing="3" p="3">
+    <Box bg="white" rounded={5} boxShadow="dark-lg">
+      <Wrap spacing="3" p="3" justify="center">
         {mock.map((m, i) => (
           <Word data={m} key={i} />
         ))}
       </Wrap>
-      {/* <SimpleGrid columns={10} spacing={4} p="5">
-        {mock.map((m, i) => (
-          <Word data={m} key={i} />
-        ))}
-      </SimpleGrid> */}
     </Box>
   );
 }
