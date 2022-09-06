@@ -1,5 +1,5 @@
 import React from 'react';
-import { Center, Stack } from '@chakra-ui/react';
+import { Center, Link, Stack, Text } from '@chakra-ui/react';
 import Header from './components/Header/Header';
 import WordList from './components/WordList/WordList';
 import ActionGroup from './components/ActionGroup/ActionGroup';
@@ -12,6 +12,12 @@ function App() {
         <Header />
         <WordList />
         <ActionGroup />
+        <Text w="100%" align="center" color="white">
+          Made by{' '}
+          <Link color="blue.400" href="https://github.com/bgebes">
+            bgebes
+          </Link>
+        </Text>
       </Stack>
     </Center>
   );
