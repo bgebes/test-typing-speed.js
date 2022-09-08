@@ -1,5 +1,5 @@
 import React from 'react';
-import { Select, Stack, Text } from '@chakra-ui/react';
+import { Select } from '@chakra-ui/react';
 
 function Header() {
   return (
@@ -10,10 +10,10 @@ function Header() {
       w="10vw"
       border="gray"
     >
-      <option value="turkish" style={{ backgroundColor: '#38a169' }}>
+      <option value="tr" style={{ backgroundColor: '#38a169' }}>
         Turkish
       </option>
-      <option value="english" style={{ backgroundColor: '#38a169' }}>
+      <option value="en" style={{ backgroundColor: '#38a169' }}>
         English
       </option>
     </Select>

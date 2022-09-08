@@ -2,7 +2,15 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export const AppSlice = createSlice({
   name: 'app',
-  initialState: {},
+  initialState: {
+    lang: 'tr',
+    status: 'ready',
+    words: {
+      focused: '',
+      shown: [],
+      total: [],
+    },
+  },
   reducers: {},
   extraReducers: {},
 });
