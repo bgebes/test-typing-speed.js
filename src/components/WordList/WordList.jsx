@@ -28,7 +28,7 @@ function WordList() {
 
   return (
     <Box bg="white" rounded={5} boxShadow="dark-lg">
-      <Wrap spacing="3" p="3" justify="center">
+      <Wrap spacing="1" p="5">
         {mock.map((m, i) => (
           <Word data={m} key={i} />
         ))}

@@ -1953,6 +1953,11 @@ scheduler@^0.23.0:
   dependencies:
     loose-envify "^1.1.0"
 
+seconds-to-show@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/seconds-to-show/-/seconds-to-show-1.0.6.tgz#e0a890bff8bdf10940d58b9927e96cf569b1862e"
+  integrity sha512-0+aar1zg7kOVgu/BzJB+zExTY0/BgjqzCO8BB1DJWIWUQfTKWtyiaIDlxExbCekpwPMs+svVLpCAOrI9VbvnxQ==
+
 semver@^6.3.0:
   version "6.3.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-6.3.0.tgz#ee0a64c8af5e8ceea67687b133761e1becbd1d3d"

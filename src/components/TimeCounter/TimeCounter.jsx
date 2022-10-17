@@ -1,7 +1,11 @@
-import { Text } from '@chakra-ui/react';
 import React from 'react';
+import SecondsToShow from 'seconds-to-show';
+import { Text } from '@chakra-ui/react';
+import { getCounterState } from '../../actions/actions';
 
 function TimeCounter() {
+  const { current } = getCounterState();
+
   return (
     <Text
       fontSize="xl"
@@ -11,7 +15,7 @@ function TimeCounter() {
       py="1.5"
       rounded="5"
     >
-      1:00
+      {SecondsToShow(current)}
     </Text>
   );
 }
