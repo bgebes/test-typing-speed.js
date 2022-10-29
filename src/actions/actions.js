@@ -2,7 +2,7 @@ import axios from 'axios';
 import { store } from '../redux/store';
 import { useSelector } from 'react-redux';
 import { startCountdown } from '../utils/utils';
-import { correctMatch, wrongMatch } from '../redux/Result/ResultSlice';
+import { match } from '../redux/Result/ResultSlice';
 import {
   setLang,
   focusNextWord,
@@ -51,9 +51,9 @@ export const checkMatch = (input) => {
   const { focused } = getAppStateByStore().words;
 
   if (input == focused) {
-    store.dispatch(correctMatch({ word: input }));
+    store.dispatch(match({ type: 'correct', word: input }));
   } else {
-    store.dispatch(wrongMatch({ word: focused }));
+    store.dispatch(match({ type: 'wrong', word: focused }));
   }
 };
 
