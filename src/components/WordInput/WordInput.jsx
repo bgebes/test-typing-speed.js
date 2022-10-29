@@ -1,9 +1,9 @@
 import React from 'react';
-import { startCountdown } from '../../utils/utils';
 import { Input } from '@chakra-ui/react';
+import { handleWordInput } from '../../actions/actions';
 
 function WordInput() {
-  return <Input w="15vw" bg="white" onChange={startCountdown} />;
+  return <Input w="15vw" bg="white" onChange={handleWordInput} />;
 }
 
 export default WordInput;

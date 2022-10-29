@@ -1,35 +1,20 @@
-import { Box, Container, SimpleGrid, Wrap } from '@chakra-ui/react';
 import React from 'react';
 import Word from '../Word/Word';
+import { Box, Wrap } from '@chakra-ui/react';
+import { getAppState, runGetWordData } from '../../actions/actions';
+import { useEffect } from 'react';
 
 function WordList() {
-  const mock = [
-    'diğer',
-    'hayat',
-    'etmek',
-    'ses',
-    'şimdi',
-    'ile',
-    'üzerinde',
-    'sonuç',
-    'değil',
-    'her',
-    'söz',
-    'göz',
-    'ise',
-    'dönmek',
-    'iç',
-    'baş',
-    'insan',
-    'bugün',
-    'geçmek',
-    'yaşamak',
-  ];
+  useEffect(() => {
+    runGetWordData();
+  }, []);
+
+  const { shown } = getAppState().words;
 
   return (
     <Box bg="white" rounded={5} boxShadow="dark-lg">
       <Wrap spacing="1" p="5">
-        {mock.map((m, i) => (
+        {shown.map((m, i) => (
           <Word data={m} key={i} />
         ))}
       </Wrap>
