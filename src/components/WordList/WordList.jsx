@@ -14,8 +14,8 @@ function WordList() {
   return (
     <Box bg="white" rounded={5} boxShadow="dark-lg">
       <Wrap spacing="1" p="5">
-        {words.shown.map((m, i) => (
-          <Word data={m} key={i} />
+        {words.shown.map((v, i) => (
+          <Word data={v} key={i} />
         ))}
       </Wrap>
     </Box>

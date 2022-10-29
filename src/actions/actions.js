@@ -2,6 +2,7 @@ import axios from 'axios';
 import { store } from '../redux/store';
 import { useSelector } from 'react-redux';
 import { startCountdown } from '../utils/utils';
+import { correctMatch, wrongMatch } from '../redux/Result/ResultSlice';
 import {
   setLang,
   focusNextWord,
@@ -32,18 +33,28 @@ export const runGetWordData = () => {
 export const handleWordInput = (event) => {
   let { value } = event.target;
 
-  if (value.includes(' ')) {
+  if (value === ' ') {
+    event.target.value = '';
+  } else if (value.includes(' ')) {
     const input = value.trim();
 
-    nextWord();
-    /*
-        check(value.trim());
-    */
-
+    checkMatch(input);
     event.target.value = '';
+
+    nextWord();
   }
 
   startCountdown();
+};
+
+export const checkMatch = (input) => {
+  const { focused } = getAppStateByStore().words;
+
+  if (input == focused) {
+    store.dispatch(correctMatch({ word: input }));
+  } else {
+    store.dispatch(wrongMatch({ word: focused }));
+  }
 };
 
 export const nextWord = () => {

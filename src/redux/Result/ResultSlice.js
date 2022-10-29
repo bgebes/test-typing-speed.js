@@ -15,9 +15,18 @@ export const ResultSlice = createSlice({
       wrong: [],
     },
   },
-  reducers: {},
+  reducers: {
+    correctMatch: (state, action) => {
+      state.words.correct.push(action.payload.word);
+      state.wordsPerMinute++;
+    },
+    wrongMatch: (state, action) => {
+      state.words.wrong.push(action.payload.word);
+      state.wordsPerMinute++;
+    },
+  },
   extraReducers: {},
 });
 
-export const {} = ResultSlice.actions;
+export const { correctMatch, wrongMatch } = ResultSlice.actions;
 export default ResultSlice.reducer;
