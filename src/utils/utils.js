@@ -1,4 +1,5 @@
 import { getCounterStateByStore } from '../actions/actions';
+import { setInputDisabled } from '../redux/App/AppSlice';
 import {
   decrement,
   start,
@@ -29,11 +30,12 @@ export const startCountdown = () => {
 
 const stopCountdown = () => {
   clearInterval(getCounterStateByStore().interval);
+  store.dispatch(setInputDisabled({ disabled: true }));
 };
 
 export const restartCountdown = () => {
   store.dispatch(restart());
 
-  stopCountdown();
-  startCountdown();
+  clearInterval(getCounterStateByStore().interval);
+  store.dispatch(setInputDisabled({ disabled: false }));
 };

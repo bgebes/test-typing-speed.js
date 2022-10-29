@@ -5,16 +5,16 @@ import { getAppState, runGetWordData } from '../../actions/actions';
 import { useEffect } from 'react';
 
 function WordList() {
+  const { lang, words } = getAppState();
+
   useEffect(() => {
     runGetWordData();
-  }, []);
-
-  const { shown } = getAppState().words;
+  }, [lang]);
 
   return (
     <Box bg="white" rounded={5} boxShadow="dark-lg">
       <Wrap spacing="1" p="5">
-        {shown.map((m, i) => (
+        {words.shown.map((m, i) => (
           <Word data={m} key={i} />
         ))}
       </Wrap>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Select } from '@chakra-ui/react';
+import { handleSelectLang } from '../../actions/actions';
 
 function Header() {
   return (
@@ -9,6 +10,7 @@ function Header() {
       color="white"
       w="10vw"
       border="gray"
+      onChange={handleSelectLang}
     >
       <option value="tr" style={{ backgroundColor: '#38a169' }}>
         Turkish

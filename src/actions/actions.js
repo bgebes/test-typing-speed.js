@@ -2,7 +2,12 @@ import axios from 'axios';
 import { store } from '../redux/store';
 import { useSelector } from 'react-redux';
 import { startCountdown } from '../utils/utils';
-import { wordData } from '../redux/App/AppSlice';
+import {
+  setLang,
+  focusNextWord,
+  nextPage,
+  wordData,
+} from '../redux/App/AppSlice';
 
 export const getAppState = () => useSelector((state) => state.app);
 export const getCounterState = () => useSelector((state) => state.counter);
@@ -12,12 +17,25 @@ export const getAppStateByStore = () => store.getState().app;
 export const getCounterStateByStore = () => store.getState().counter;
 export const getResultStateByStore = () => store.getState().result;
 
+export const getWordData = async () => {
+  const { lang } = getAppStateByStore();
+
+  const handle = await axios(`${import.meta.env.VITE_API_BASE}/${lang}`);
+
+  return handle.data;
+};
+
+export const runGetWordData = () => {
+  store.dispatch(wordData());
+};
+
 export const handleWordInput = (event) => {
   let { value } = event.target;
 
   if (value.includes(' ')) {
     const input = value.trim();
 
+    nextWord();
     /*
         check(value.trim());
     */
@@ -28,12 +46,19 @@ export const handleWordInput = (event) => {
   startCountdown();
 };
 
-export const getWordData = async () => {
-  const handle = await axios(import.meta.env.VITE_API_BASE);
+export const nextWord = () => {
+  const { words } = getAppStateByStore();
+  const focusedIndex = words.shown.indexOf(words.focused);
 
-  return handle.data;
+  if (focusedIndex == words.shown.length - 1) {
+    store.dispatch(nextPage());
+  } else {
+    store.dispatch(focusNextWord());
+  }
 };
 
-export const runGetWordData = () => {
-  store.dispatch(wordData());
+export const handleSelectLang = (event) => {
+  const { value } = event.target;
+
+  store.dispatch(setLang({ lang: value }));
 };
