@@ -11,6 +11,7 @@ import {
   setFinished,
   changeInputValue,
 } from '../redux/App/AppSlice';
+import { restart } from '../redux/Counter/CounterSlice';
 
 export const getAppState = () => useSelector((state) => state.app);
 export const getCounterState = () => useSelector((state) => state.counter);
@@ -104,4 +105,7 @@ export const handleSelectLang = (event) => {
   const { value } = event.target;
 
   store.dispatch(setLang({ lang: value }));
+  store.dispatch(restart());
+  clearInterval(getCounterStateByStore().interval);
+  store.dispatch(setFinished({ finished: false }));
 };
