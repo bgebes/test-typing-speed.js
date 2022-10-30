@@ -8,6 +8,8 @@ import {
   focusNextWord,
   nextPage,
   wordData,
+  setFinished,
+  changeInputValue,
 } from '../redux/App/AppSlice';
 
 export const getAppState = () => useSelector((state) => state.app);
@@ -32,15 +34,16 @@ export const runGetWordData = () => {
 
 export const handleWordInput = (event) => {
   let { value } = event.target;
+  store.dispatch(changeInputValue({ value }));
 
   if (value === ' ') {
-    event.target.value = '';
+    store.dispatch(changeInputValue({ value: '' }));
   } else if (value.includes(' ')) {
     const input = value.trim();
 
     checkMatch(input);
     checkKeyStrokes(input);
-    event.target.value = '';
+    store.dispatch(changeInputValue({ value: '' }));
 
     nextWord();
   }
@@ -76,8 +79,6 @@ export const checkKeyStrokes = (input) => {
     }
 
     temp.total++;
-
-    console.log(focused[i]);
   }
 
   store.dispatch(matchKeyStrokes(temp));
@@ -86,6 +87,11 @@ export const checkKeyStrokes = (input) => {
 export const nextWord = () => {
   const { words } = getAppStateByStore();
   const focusedIndex = words.shown.indexOf(words.focused);
+
+  if (words.shown.length == 0) {
+    store.dispatch(setFinished({ finished: true }));
+    return;
+  }
 
   if (focusedIndex == words.shown.length - 1) {
     store.dispatch(nextPage());

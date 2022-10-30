@@ -7,7 +7,29 @@ export const AppSlice = createSlice({
   name: 'app',
   initialState: {
     lang: 'tr',
+    langTitles: {
+      tr: {
+        header: 'Sonuç',
+        wpmUnit: 'DKS',
+        wpmSubTitle: 'kelime yazabiliyorum',
+        keyStrokes: 'Tuş Vuruşu',
+        accuracy: 'Doğruluk',
+        correctWords: 'Doğru Kelime',
+        wrongWords: 'Yanlış Kelime',
+      },
+      en: {
+        header: 'Result',
+        wpmUnit: 'WPM',
+        wpmSubTitle: 'can type',
+        keyStrokes: 'Keystrokes',
+        accuracy: 'Accuracy',
+        correctWords: 'Correct words',
+        wrongWords: 'Wrong words',
+      },
+    },
+    inputValue: '',
     inputDisabled: false,
+    appFinished: false,
     words: {
       focused: '',
       shown: [],
@@ -34,8 +56,16 @@ export const AppSlice = createSlice({
 
       state.words.focused = state.words.shown[0];
     },
+    changeInputValue: (state, action) => {
+      state.inputValue = action.payload.value;
+    },
     setInputDisabled: (state, action) => {
       state.inputDisabled = action.payload.disabled;
+    },
+    setFinished: (state, action) => {
+      state.appFinished = action.payload.finished;
+
+      if (!action.payload.finished) state.inputValue = '';
     },
   },
   extraReducers: {
@@ -49,6 +79,12 @@ export const AppSlice = createSlice({
   },
 });
 
-export const { setLang, focusNextWord, nextPage, setInputDisabled } =
-  AppSlice.actions;
+export const {
+  setLang,
+  focusNextWord,
+  nextPage,
+  changeInputValue,
+  setInputDisabled,
+  setFinished,
+} = AppSlice.actions;
 export default AppSlice.reducer;

@@ -3,6 +3,7 @@ import { Center, Link, Stack, Text } from '@chakra-ui/react';
 import Header from './components/Header/Header';
 import WordList from './components/WordList/WordList';
 import ActionGroup from './components/ActionGroup/ActionGroup';
+import Result from './components/Result/Result';
 import './App.css';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
             bgebes
           </Link>
         </Text>
+        <Result />
       </Stack>
     </Center>
   );
