@@ -11,3 +11,10 @@
 - https://redux-toolkit.js.org/
 - https://chakra-ui.com/
 - https://app.patika.dev/courses/redux/typing-speed-app
+
+# Word API
+
+https://github.com/omerclskn/Typing-Speed-App
+
+Thank you! That's a usage to do my practice. That's not for commercial use.
+If you have a problem, just send me an e-mail. I can stop using your service immediately.
