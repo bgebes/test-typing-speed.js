@@ -1,4 +1,4 @@
-import { getCounterStateByStore } from '../actions/actions';
+import { getCounterStateByStore, runGetWordData } from '../actions/actions';
 import { setFinished, setInputDisabled } from '../redux/App/AppSlice';
 import {
   decrement,
@@ -35,10 +35,12 @@ const stopCountdown = () => {
   store.dispatch(setFinished({ finished: true }));
 };
 
-export const restartCountdown = () => {
+export const restartApp = () => {
   store.dispatch(restart());
 
   clearInterval(getCounterStateByStore().interval);
   store.dispatch(setInputDisabled({ disabled: false }));
   store.dispatch(setFinished({ finished: false }));
+
+  runGetWordData();
 };

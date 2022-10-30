@@ -1,7 +1,7 @@
 import React from 'react';
 import { Flex } from '@chakra-ui/react';
 import { RepeatIcon } from '@chakra-ui/icons';
-import { restartCountdown } from '../../utils/utils';
+import { restartApp } from '../../utils/utils';
 
 function RestartButton() {
   return (
@@ -11,7 +11,7 @@ function RestartButton() {
       color="white"
       p="3"
       rounded="5"
-      onClick={restartCountdown}
+      onClick={restartApp}
     >
       <RepeatIcon />
     </Flex>

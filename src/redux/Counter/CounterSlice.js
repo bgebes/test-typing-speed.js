@@ -4,7 +4,7 @@ export const CounterSlice = createSlice({
   name: 'counter',
   initialState: {
     status: 'ready',
-    current: 2,
+    current: 60,
     interval: null,
   },
   reducers: {

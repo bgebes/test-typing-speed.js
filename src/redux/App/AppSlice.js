@@ -65,7 +65,15 @@ export const AppSlice = createSlice({
     setFinished: (state, action) => {
       state.appFinished = action.payload.finished;
 
-      if (!action.payload.finished) state.inputValue = '';
+      if (!action.payload.finished) {
+        state.inputValue = '';
+        state.words = {
+          focused: '',
+          shown: [],
+          total: [],
+          pageCount: 0,
+        };
+      }
     },
   },
   extraReducers: {
