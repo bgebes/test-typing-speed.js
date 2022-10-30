@@ -2,7 +2,7 @@ import axios from 'axios';
 import { store } from '../redux/store';
 import { useSelector } from 'react-redux';
 import { startCountdown } from '../utils/utils';
-import { match } from '../redux/Result/ResultSlice';
+import { match, matchKeyStrokes } from '../redux/Result/ResultSlice';
 import {
   setLang,
   focusNextWord,
@@ -39,6 +39,7 @@ export const handleWordInput = (event) => {
     const input = value.trim();
 
     checkMatch(input);
+    checkKeyStrokes(input);
     event.target.value = '';
 
     nextWord();
@@ -55,6 +56,31 @@ export const checkMatch = (input) => {
   } else {
     store.dispatch(match({ type: 'wrong', word: focused }));
   }
+};
+
+export const checkKeyStrokes = (input) => {
+  const temp = { correct: 0, wrong: 0, total: 0 };
+
+  const { focused } = getAppStateByStore().words;
+
+  for (let i = 0; i < input.length; i++) {
+    if (focused[i] === undefined) {
+      /* That's not enough index for focused so finish scan. */
+      break;
+    }
+
+    if (input[i] === focused[i]) {
+      temp.correct++;
+    } else {
+      temp.wrong++;
+    }
+
+    temp.total++;
+
+    console.log(focused[i]);
+  }
+
+  store.dispatch(matchKeyStrokes(temp));
 };
 
 export const nextWord = () => {

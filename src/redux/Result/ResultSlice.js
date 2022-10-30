@@ -26,9 +26,16 @@ export const ResultSlice = createSlice({
         ((state.words.correct.length / state.wordsPerMinute) * 100).toFixed(2)
       );
     },
+    matchKeyStrokes: (state, action) => {
+      const { correct, wrong, total } = action.payload;
+
+      state.keyStrokes.correct += correct;
+      state.keyStrokes.wrong += wrong;
+      state.keyStrokes.total += total;
+    },
   },
   extraReducers: {},
 });
 
-export const { match } = ResultSlice.actions;
+export const { match, matchKeyStrokes } = ResultSlice.actions;
 export default ResultSlice.reducer;
